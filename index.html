@@ -44,19 +44,19 @@
     <input id="addInput" placeholder="+" />
 
     <script>
-        var items = [
+        const items = [
             { text: "切版作業bootstrap", done: false },
             { text: "代辦清單作業", done: true },
         ];
 
         function update() {
-            var list = document.getElementById("list");
+            const list = document.getElementById("list");
             list.innerHTML = "";
 
             items.forEach(function(item, i) {
-                var row = document.createElement("div");
+                const row = document.createElement("div");
 
-                var circle = document.createElement("span");
+                const circle = document.createElement("span");
                 circle.textContent = item.done ? "☑" : "☐";
                 circle.style.fontSize = "22px";
                 circle.style.cursor = "pointer";
@@ -65,12 +65,12 @@
                     update();
                 };
 
-                var txt = document.createElement("span"); //span會再同一行
+                const txt = document.createElement("span"); //span會再同一行
                 txt.textContent = item.text;
                 txt.style.textDecoration = item.done ? "line-through" :         "none";
 
 
-                var del = document.createElement("button");
+                const del = document.createElement("button");
                 del.textContent = "×";
                 del.onclick = function() {
                     items.splice(i, 1);
