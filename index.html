@@ -12,7 +12,7 @@
         #list div {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 8px;
             padding: 10px 0;
             border-bottom: 1px solid #eee;
         }
@@ -20,12 +20,12 @@
         input {
             width: 100%;
             padding: 10px;
-            padding-left: 1px;
+            padding-left: 0;
             margin-top: 12px;
             border: none;
-            outline: none;
             border-bottom: 1px solid #eee;
-            font-size: 18px;
+            outline: none;
+            font-size: 15px;
         }
 
         button {
@@ -41,7 +41,7 @@
 
     <h1>待辦事項</h1>
     <div id="list"></div>
-    <input id="addInput" placeholder="+" />
+    <input id="addInput" placeholder="新增項目" />
 
     <script>
         const items = [
@@ -50,7 +50,7 @@
         ];
 
         function update() {
-            const list = document.getElementById("list");
+            const list = document.querySelector("#list");
             list.innerHTML = "";
 
             items.forEach(function(item, i) {
@@ -65,10 +65,9 @@
                     update();
                 };
 
-                const txt = document.createElement("span"); //span會再同一行
+                const txt = document.createElement("span");
                 txt.textContent = item.text;
-                txt.style.textDecoration = item.done ? "line-through" :         "none";
-
+                txt.style.textDecoration = item.done ? "line-through" : "none";
 
                 const del = document.createElement("button");
                 del.textContent = "×";
@@ -77,24 +76,20 @@
                     update();
                 };
 
-                row.appendChild(circle);
-                row.appendChild(txt);
-                row.appendChild(del);
-
-                list.appendChild(row);
+                row.append(circle, txt, del);
+                list.append(row);
             });
         }
 
         update();
 
-        document.getElementById("addInput").addEventListener("keydown", function(e) {
+        document.querySelector("#addInput").addEventListener("keydown", function(e) {
             if (e.key === "Enter" && this.value.trim() !== "") {
                 items.push({ text: this.value.trim(), done: false });
                 this.value = "";
                 update();
             }
         });
-        
     </script>
 
 </body>
